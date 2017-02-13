@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(
+                    function() {
+                        sse = new EventSource('/stream');
+                        sse.onmessage = function(message) {
+                            console.log('A message has arrived!');
+                            $('#output').append('<li>'+message.data+'</li>');
+                        }
+
+                    })
+
+        </script>
+    </head>
+
+    <body>
+
+        <h2>Demo</h2>
+
+        <ul id="output">
+
+        </ul>
+
+    </body>
+
+</html>
+

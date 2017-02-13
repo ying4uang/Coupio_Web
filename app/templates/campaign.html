@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<title>Coupio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{ url_for('static', filename='w3.css')}}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<style>
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.button {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 12px 28px;
+}
+
+</style>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-large">
+    <div class="w3-col s3">
+      <a href="http://www.coupio.us" class="w3-btn-block w3-light-grey">Home</a>
+    </div>
+
+    <div class="w3-col s3">
+      <a href="http://www.coupio.us/analytics" class="w3-btn-block w3-light-grey">Analytics</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#contact" class="w3-btn-block w3-light-grey">Admin</a>
+    </div>
+    
+    <div class="w3-col s3">
+      <a href="#contact" class="w3-btn-block w3-light-grey">About</a>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div id ="campaign_table" class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+
+  <div class="w3-panel">
+    <h1><b>Coupio</b></h1>
+    <p>A coupon distribution service</p>
+  </div>
+    
+   <div>
+     <table>
+     <tr>
+    <th>Campaign Name</th>
+    <th>Promotion Type</th>
+    <th>Promotion Product</th> 
+    <th>Campaign Target</th>
+    <th>Coupon Distributed to Date</th>
+</tr>
+{% for val in result %}
+   <tr>
+        <td> {{ val.campaign }} </td>
+        <td> {{ val.promotion }} </td>
+        <td> {{ val.product }} </td>
+        <td> {{ val.campaign_target }} </td>
+        <td> {{ val.coupon_count }} </td>
+   </tr>
+{% endfor %}
+</table>
+     
+
+
+   </div>
+
+</div>
+
+
+<div class="w3-content" style="max-width:200px;margin-top:80px;margin-bottom:80px">
+<table style="text-align:right">
+<tr style="text-align:right">
+<td id="time" style="border-bottom-style:none;text-align:right">
+refresh in 15 seconds
+</td>
+</tr>
+
+</table>
+</div>
+
+<div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+<button align="center" class="button" onclick="window.location='http://www.coupio.us/create';">Create New Campaign</button>
+</div>
+<!-- Footer -->
+
+
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+  <h4>Footer</h4>
+  <a href="#" class="w3-btn w3-padding w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-text-indigo"></i>
+    <i class="fa fa-instagram w3-hover-text-purple"></i>
+    <i class="fa fa-snapchat w3-hover-text-yellow"></i>
+    <i class="fa fa-pinterest-p w3-hover-text-red"></i>
+    <i class="fa fa-twitter w3-hover-text-light-blue"></i>
+    <i class="fa fa-linkedin w3-hover-text-indigo"></i>
+  </div>
+  <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+
+<script>
+
+
+$(window).ready( function() {
+    
+    var time = 15
+   
+    setInterval( function() {
+        
+        time--;
+        
+        $('#time').html("refresh in "+time+" seconds");
+        
+        if (time === 0) {
+
+               location.reload();
+        }    
+        
+        
+    }, 1000 );
+    
+});
+
+
+// Slideshow
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demodots");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-white";
+}
+</script>
+
+</body>
+</html>
+

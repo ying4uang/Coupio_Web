@@ -1,2 +1,3 @@
 instance/*
 tmp
+app/*.pyc

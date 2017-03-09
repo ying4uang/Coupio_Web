@@ -73,9 +73,9 @@ th, td {
      <tr>
     <th>Campaign Name</th>
     <th>Promotion Type</th>
-    <th>Promotion Product</th> 
+    <th>Triggering Product</th> 
     <th>Campaign Target</th>
-    <th>Coupon Distributed to Date</th>
+    <th>Coupons Distributed to Date</th>
 </tr>
 {% for val in result %}
    <tr>
@@ -99,7 +99,7 @@ th, td {
 <table style="text-align:right">
 <tr style="text-align:right">
 <td id="time" style="border-bottom-style:none;text-align:right">
-refresh in 15 seconds
+refresh in 5 seconds
 </td>
 </tr>
 
@@ -132,7 +132,7 @@ refresh in 15 seconds
 
 $(window).ready( function() {
     
-    var time = 15
+    var time = 5
    
     setInterval( function() {
         

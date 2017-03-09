@@ -53,9 +53,11 @@ def display_campaign():
     if campaign_id is not None:
     	campaign_info = red.hgetall(campaign_id)
     else:
-    	keys = red.keys('*')
+    	keys = red.keys('*') 
+        #pipe = red.pipeline()
 	for key in keys:
-    		campaign_info.append(red.hgetall(key))
+            campaign_info.append(red.hgetall(key))
+        #values = pipe.execute()
     return render_template('campaign.html', result=campaign_info)
 
 
